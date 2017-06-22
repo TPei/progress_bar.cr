@@ -23,7 +23,6 @@
 # => Installation done!
 # ```
 class ProgressBar
-  CLEAR = STDOUT.tty? ? "\u001b[2K" : "\u000d"
   CHARS = {
     default: [" ", "#"],
     funky: ["▒", "█"],
