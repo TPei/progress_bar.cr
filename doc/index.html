@@ -58,7 +58,15 @@
 
 <span class="c"># simple</span>
 pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>
-pb.with_progress { pb.init; <span class="n">10</span>.times { sleep <span class="n">0.1</span>; pb.tick } }
+pb.with_progress <span class="k">do</span>
+  <span class="c"># print empty progress bar</span>
+  pb.init
+
+  <span class="n">10</span>.times <span class="k">do</span>
+    sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
+    pb.tick <span class="c"># increase bar progress by 1</span>
+  <span class="k">end</span>
+<span class="k">end</span>
 <span class="c"># &#61;&gt; &#91;##########&#93;</span>
 
 <span class="c"># more control over stuff</span>

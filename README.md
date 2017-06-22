@@ -26,7 +26,15 @@ require "progress_bar"
 
 # simple
 pb = ProgressBar.new
-pb.with_progress { pb.init; 10.times { sleep 0.1; pb.tick } }
+pb.with_progress do
+  # print empty progress bar
+  pb.init
+
+  10.times do
+    sleep 0.1 # very time intense!
+    pb.tick # increase bar progress by 1
+  end
+end
 # => [##########]
 
 # more control over stuff
