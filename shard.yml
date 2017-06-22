@@ -1,0 +1,7 @@
+name: progress_bar.cr
+version: 0.0.1
+
+authors:
+  - tpei <tpei@users.noreply.github.com>
+
+license: MIT
