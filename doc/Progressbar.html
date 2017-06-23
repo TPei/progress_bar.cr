@@ -25,6 +25,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/TPei/progress_bar.cr/ProgressCharsetException" data-name="progresscharsetexception">
+      <a href="ProgressCharsetException.html">ProgressCharsetException</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/TPei/progress_bar.cr/ProgressExceededException" data-name="progressexceededexception">
       <a href="ProgressExceededException.html">ProgressExceededException</a>
       
@@ -56,21 +61,14 @@ by displaying a progress bar</p>
 
 <span class="c"># simple</span>
 pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>
-pb.with_progress { pb.init; <span class="n">10</span>.times { sleep <span class="n">0.1</span>; pb.tick } }
-=> [<span class="c">##########&#93;</span>
+<span class="c"># print empty progress bar</span>
+pb.init
 
-<span class="c"># more control over stuff</span>
-pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>(ticks: <span class="n">100</span>, chars: <span class="n">:funky</span>, completion_message: <span class="s">&quot;Installation done&#33;&quot;</span>)
-pb.with_progress <span class="k">do</span>
-  pb.init
-  <span class="n">80</span>.times { pb.tick; sleep <span class="n">0.2</span> }
-  pb.progress by: <span class="n">18</span>
-  sleep <span class="n">3</span> <span class="c"># that always happens&#33;</span>
-  pb.tick
-  pb.tick
+<span class="n">10</span>.times <span class="k">do</span>
+sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
+  pb.tick <span class="c"># increase bar progress by 1</span>
 <span class="k">end</span>
-=> [████████████████████████████████████████████████████████████████████████████████████████████████████]
-=> <span class="t">Installation</span> done!</code></pre>
+<span class="c"># &#61;&gt; &#91;##########&#93;</span></code></pre>
 
 
 
@@ -88,7 +86,7 @@ pb.with_progress <span class="k">do</span>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/TPei/progress_bar.cr/blob/4d7ddc64b8d8587bab657e68c2b3b0e5e53d8797/src/progress_bar.cr#L25" target="_blank">progress_bar.cr</a>
+      <a href="https://github.com/TPei/progress_bar.cr/blob/5254e44e88a0f38e8a55cb30a4c3ed1a6b7206c1/src/progress_bar.cr#L18" target="_blank">progress_bar.cr</a>
     
     <br/>
   
@@ -100,17 +98,8 @@ pb.with_progress <span class="k">do</span>
   
   <dl>
     
-      <dt class="entry-const" id="CHARS">
-        <strong>CHARS</strong> = <code>{default: [<span class="s">&quot; &quot;</span>, <span class="s">&quot;#&quot;</span>], funky: [<span class="s">&quot;▒&quot;</span>, <span class="s">&quot;█&quot;</span>]}</code>
-      </dt>
-      
-    
-      <dt class="entry-const" id="CLEAR">
-        <strong>CLEAR</strong> = <code><span class="k">if</span> <span class="t">STDOUT</span>.tty?
-  <span class="s">&quot;\e&#91;2K&quot;</span>
-<span class="k">else</span>
-  <span class="s">&quot;\r&quot;</span>
-<span class="k">end</span></code>
+      <dt class="entry-const" id="CHARSETS">
+        <strong>CHARSETS</strong> = <code>{default: [<span class="s">&quot; &quot;</span>, <span class="s">&quot;#&quot;</span>], line: [<span class="s">&quot; &quot;</span>, <span class="s">&quot;-&quot;</span>], equals: [<span class="s">&quot; &quot;</span>, <span class="s">&quot;&#61;&quot;</span>], bar: [<span class="s">&quot;▒&quot;</span>, <span class="s">&quot;█&quot;</span>]}</code>
       </dt>
       
     
@@ -122,9 +111,9 @@ pb.with_progress <span class="k">do</span>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28ticks%3D10%2Cchars%3D%3Adefault%2Ccompletion_message%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(ticks = <span class="n">10</span>, chars = <span class="n">:default</span>, completion_message : String? = <span class="n">nil</span>)</a>
+        <a href="#new%28ticks%3D10%2Ccharset%3D%3Adefault%2Cchars%3D%5B%5DofString%2Ccompletion_message%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(ticks = <span class="n">10</span>, charset = <span class="n">:default</span>, chars = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, completion_message : String? = <span class="n">nil</span>)</a>
         
-          <div class="summary"><p>initializes the progress bar with necessary information: <code>ticks = 10 # number of increments (bar size)</code> <code>chars = :default # can also be :funky (what characters to use for bar)</code> <code>completion_message: nil # string to display after loading is done</code></p></div>
+          <div class="summary"><p>initializes the progress bar with necessary information: <code>ticks = 10 # number of increments (bar size)</code> <code>charset = :default # can also be :line, :equals, :bar (what characters to use for bar)</code> <code>chars = [] # you can give two custom strings [empty_string, filled_string] to print instead of using a predefined charset</code> <code>completion_message: nil # string to display after loading is done</code> ProgressBar.new(chars: [" ", "x"])</p></div>
         
       </li>
     
@@ -134,6 +123,11 @@ pb.with_progress <span class="k">do</span>
 
   <h2>Instance Method Summary</h2>
   <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#complete-instance-method" class="signature"><strong>#complete</strong></a>
+        
+      </li>
     
       <li class="entry-summary">
         <a href="#init-instance-method" class="signature"><strong>#init</strong></a>
@@ -150,6 +144,13 @@ pb.with_progress <span class="k">do</span>
       </li>
     
       <li class="entry-summary">
+        <a href="#reset-instance-method" class="signature"><strong>#reset</strong></a>
+        
+          <div class="summary"><p>resetting the progress bar (emptying it)</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#tick-instance-method" class="signature"><strong>#tick</strong></a>
         
           <div class="summary"><p>increment progress by one</p></div>
@@ -159,7 +160,7 @@ pb.with_progress <span class="k">do</span>
       <li class="entry-summary">
         <a href="#with_progress%28%26block%29-instance-method" class="signature"><strong>#with_progress</strong>(&block)</a>
         
-          <div class="summary"><p>yields and returns block return value</p></div>
+          <div class="summary"><p>yields and returns block return value resetting the progress bar after completion</p></div>
         
       </li>
     
@@ -190,23 +191,25 @@ pb.with_progress <span class="k">do</span>
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="new&#40;ticks&#61;10,chars&#61;:default,completion_message:String?&#61;nil&#41;-class-method">
+    <div class="entry-detail" id="new&#40;ticks&#61;10,charset&#61;:default,chars&#61;&#91;&#93;ofString,completion_message:String?&#61;nil&#41;-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(ticks = <span class="n">10</span>, chars = <span class="n">:default</span>, completion_message : String? = <span class="n">nil</span>)
+        def self.<strong>new</strong>(ticks = <span class="n">10</span>, charset = <span class="n">:default</span>, chars = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, completion_message : String? = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28ticks%3D10%2Cchars%3D%3Adefault%2Ccompletion_message%3AString%3F%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28ticks%3D10%2Ccharset%3D%3Adefault%2Cchars%3D%5B%5DofString%2Ccompletion_message%3AString%3F%3Dnil%29-class-method">#</a>
       </div>
       
         <div class="doc"><p>initializes the progress bar with necessary information:
 <code>ticks = 10 # number of increments (bar size)</code>
-<code>chars = :default # can also be :funky (what characters to use for bar)</code>
-<code>completion_message: nil # string to display after loading is done</code></p></div>
+<code>charset = :default # can also be :line, :equals, :bar (what characters to use for bar)</code>
+<code>chars = [] # you can give two custom strings [empty_string, filled_string] to print instead of using a predefined charset</code>
+<code>completion_message: nil # string to display after loading is done</code>
+ProgressBar.new(chars: [" ", "x"])</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/4d7ddc64b8d8587bab657e68c2b3b0e5e53d8797/src/progress_bar.cr#L36" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5254e44e88a0f38e8a55cb30a4c3ed1a6b7206c1/src/progress_bar.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -215,6 +218,22 @@ pb.with_progress <span class="k">do</span>
 
 
   <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="complete-instance-method">
+      <div class="signature">
+        
+        def <strong>complete</strong>
+
+        <a class="method-permalink" href="#complete-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5254e44e88a0f38e8a55cb30a4c3ed1a6b7206c1/src/progress_bar.cr#L47" target="_blank">View source</a>]
+        
+      </div>
+    </div>
   
     <div class="entry-detail" id="init-instance-method">
       <div class="signature">
@@ -229,7 +248,7 @@ pb.with_progress <span class="k">do</span>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/4d7ddc64b8d8587bab657e68c2b3b0e5e53d8797/src/progress_bar.cr#L49" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5254e44e88a0f38e8a55cb30a4c3ed1a6b7206c1/src/progress_bar.cr#L59" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -247,7 +266,25 @@ pb.with_progress <span class="k">do</span>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/4d7ddc64b8d8587bab657e68c2b3b0e5e53d8797/src/progress_bar.cr#L65" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5254e44e88a0f38e8a55cb30a4c3ed1a6b7206c1/src/progress_bar.cr#L73" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reset-instance-method">
+      <div class="signature">
+        
+        def <strong>reset</strong>
+
+        <a class="method-permalink" href="#reset-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>resetting the progress bar (emptying it)</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5254e44e88a0f38e8a55cb30a4c3ed1a6b7206c1/src/progress_bar.cr#L52" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -265,7 +302,7 @@ pb.with_progress <span class="k">do</span>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/4d7ddc64b8d8587bab657e68c2b3b0e5e53d8797/src/progress_bar.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5254e44e88a0f38e8a55cb30a4c3ed1a6b7206c1/src/progress_bar.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -278,12 +315,13 @@ pb.with_progress <span class="k">do</span>
         <a class="method-permalink" href="#with_progress%28%26block%29-instance-method">#</a>
       </div>
       
-        <div class="doc"><p>yields and returns block return value</p></div>
+        <div class="doc"><p>yields and returns block return value
+resetting the progress bar after completion</p></div>
       
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/4d7ddc64b8d8587bab657e68c2b3b0e5e53d8797/src/progress_bar.cr#L43" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5254e44e88a0f38e8a55cb30a4c3ed1a6b7206c1/src/progress_bar.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>

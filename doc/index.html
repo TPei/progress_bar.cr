@@ -25,6 +25,11 @@
       
     </li>
   
+  <li class=" " data-id="github.com/TPei/progress_bar.cr/ProgressCharsetException" data-name="progresscharsetexception">
+      <a href="ProgressCharsetException.html">ProgressCharsetException</a>
+      
+    </li>
+  
   <li class=" " data-id="github.com/TPei/progress_bar.cr/ProgressExceededException" data-name="progressexceededexception">
       <a href="ProgressExceededException.html">ProgressExceededException</a>
       
@@ -54,55 +59,64 @@
 
 <pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;progress_bar&quot;</span>
 
-<span class="c"># create a new progress bar to your liking</span>
-
 <span class="c"># simple</span>
 pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>
+<span class="c"># print empty progress bar</span>
+pb.init
+
+<span class="n">10</span>.times <span class="k">do</span>
+  sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
+  pb.tick <span class="c"># increase bar progress by 1</span>
+<span class="k">end</span>
+<span class="c"># &#61;&gt; &#91;##########&#93;</span></code></pre>
+
+<h2>block usage</h2>
+
+<p>You can use the <code>with_progress</code> block to automatically reset and clean
+up the progress bar after your block is done.
+Block usage will also print the completion_message, even if you don't
+completely fill the bar.</p>
+
+<pre><code class='language-crystal'>pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>(completion_message: <span class="s">&quot;DONE?&quot;</span>)
+
 pb.with_progress <span class="k">do</span>
-  <span class="c"># print empty progress bar</span>
   pb.init
 
-  <span class="n">10</span>.times <span class="k">do</span>
+  <span class="n">5</span>.times <span class="k">do</span>
     sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
     pb.tick <span class="c"># increase bar progress by 1</span>
   <span class="k">end</span>
 <span class="k">end</span>
-<span class="c"># &#61;&gt; &#91;##########&#93;</span>
+<span class="c"># &#61;&gt; &#91;########  &#93;</span>
+<span class="c"># &#61;&gt; DONE?</span></code></pre>
 
-<span class="c"># more control over stuff</span>
-pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>(ticks: <span class="n">100</span>, chars: <span class="n">:funky</span>, completion_message: <span class="s">&quot;Installation done&#33;&quot;</span>)
+<h2>methods</h2>
 
-r <span class="o">=</span> <span class="t">Random</span>.<span class="k">new</span>
+<pre><code>pb.init <span class="c"># prints empty bar</span>
+pb.tick: <span class="c"># increases bar filling by one and reprints</span>
+pb.progress(by: <span class="n">10</span>) <span class="c"># increases bar by desired number</span>
+pb.reset <span class="c"># resets the progress bar to 0, without redrawing, making it</span>
+reusable</code></pre>
 
-<span class="c"># give a block that performs your time-intense task</span>
-pb.with_progress <span class="k">do</span>
-  <span class="c"># print empty bar</span>
-  pb.init
+<h2>initialize options</h2>
 
-  sleep r.rand(<span class="n">0.3</span>) <span class="c"># heavy computation going on here&#33;&#33;</span>
-  <span class="n">80</span>.times <span class="k">do</span>
-		sleep r.rand(<span class="n">0.3</span>)
-    <span class="c"># increment the bar</span>
-    pb.tick
-  <span class="k">end</span>
+<ul><li>ticks: length the bar is made for. calling #tick more often raises an
+  error (default is 10)</li><li>completion_message: message to be displayed after progress reaches
+  100%</li><li>charset / chars: characters to display for bar</li></ul>
 
-  sleep <span class="n">0.1</span>
-  <span class="c"># progress the bar by an amount of your choice</span>
-  pb.progress by: <span class="n">5</span>
+<h3>Characters</h3>
 
-  sleep <span class="n">0.2</span>
-  pb.progress by: <span class="n">7</span>
+<p>The bar basically consists of two different types of characters: one
+signifying emptiness, one a filled state.</p>
 
-  sleep <span class="n">0.2</span>
-  pb.progress by: <span class="n">4</span>
+<p>There are a number of different predefined char sets, that you can use:</p>
 
-  <span class="n">4</span>.times <span class="k">do</span>
-    sleep <span class="n">0.1</span>
-    pb.tick
-  <span class="k">end</span>
-<span class="k">end</span>
+<ul><li>:default => [#####     ]</li><li>:line    => [-----     ]</li><li>:equals  => [=====     ]</li><li>:bar     => [█████▒▒▒▒▒]</li></ul>
 
-sleep <span class="n">0.1</span></code></pre>
+<p><code>ProgressBar.new(charset: :equals)</code></p>
+
+<p>You can also just hand in two characters of your own choosing:
+<code>ProgressBar.new(chars: ["O", "X"] # => [XXXXX00000]</code></p>
 
 <h2>Errors</h2>
 
