@@ -75,6 +75,8 @@ reusable
 
 - ticks: length the bar is made for. calling #tick more often raises an
   error (default is 10)
+- show_percentage: true / false - whether or not to display the
+  percentage next to the bar
 - completion_message: message to be displayed after progress reaches
   100%
 - charset / chars: characters to display for bar

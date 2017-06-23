@@ -10,7 +10,7 @@
 # pb.init
 #
 # 10.times do
-# sleep 0.1 # very time intense!
+#   sleep 0.1 # very time intense!
 #   pb.tick # increase bar progress by 1
 # end
 # # => [##########]
@@ -29,7 +29,7 @@ class ProgressBar
   # `chars = [] # you can give two custom strings [empty_string, filled_string] to print instead of using a predefined charset`
   # `completion_message: nil # string to display after loading is done`
   # ProgressBar.new(chars: [" ", "x"])
-	def initialize(@ticks = 10, @charset = :default, @chars = [] of String, @completion_message : (Nil | String) = nil)
+	def initialize(@ticks = 10, @charset = :default, @chars = [] of String, @show_percentage = false, @completion_message : (Nil | String) = nil)
 		@count = 0
     @initiated = false
     @complete_printed = false
@@ -83,7 +83,11 @@ class ProgressBar
   def init
     unless @initiated
       @initiated = true
-      print "[#{charset[0] * @ticks}]\r"
+      if @show_percentage
+        print "[#{charset[0] * @ticks}] 0.00%\r"
+      else
+        print "[#{charset[0] * @ticks}]\r"
+      end
     end
   end
 
@@ -106,7 +110,11 @@ class ProgressBar
     end
 
     if @count <= @ticks
-      print "[#{charset[1] * @count}#{charset[0] * (@ticks - @count)}]\r"
+      if @show_percentage
+        print "[#{charset[1] * @count}#{charset[0] * (@ticks - @count)}] #{percentage}\r"
+      else
+        print "[#{charset[1] * @count}#{charset[0] * (@ticks - @count)}]\r"
+      end
     end
     if complete? && @completion_message
       complete unless @complete_printed
@@ -122,6 +130,10 @@ class ProgressBar
     end
   rescue KeyError
     raise ProgressCharsetException.new("#{@charset} is not known!")
+  end
+
+  private def percentage
+    sprintf "%.2f", @count.to_f / (@ticks.to_f / 100.to_f)
   end
 end
 

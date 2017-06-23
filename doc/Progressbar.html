@@ -65,7 +65,7 @@ pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">n
 pb.init
 
 <span class="n">10</span>.times <span class="k">do</span>
-sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
+  sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
   pb.tick <span class="c"># increase bar progress by 1</span>
 <span class="k">end</span>
 <span class="c"># &#61;&gt; &#91;##########&#93;</span></code></pre>
@@ -86,7 +86,7 @@ sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L18" target="_blank">progress_bar.cr</a>
+      <a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L18" target="_blank">progress_bar.cr</a>
     
     <br/>
   
@@ -111,7 +111,7 @@ sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
   <ul class="list-summary">
     
       <li class="entry-summary">
-        <a href="#new%28ticks%3D10%2Ccharset%3D%3Adefault%2Cchars%3D%5B%5DofString%2Ccompletion_message%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(ticks = <span class="n">10</span>, charset = <span class="n">:default</span>, chars = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, completion_message : String? = <span class="n">nil</span>)</a>
+        <a href="#new%28ticks%3D10%2Ccharset%3D%3Adefault%2Cchars%3D%5B%5DofString%2Cshow_percentage%3Dfalse%2Ccompletion_message%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(ticks = <span class="n">10</span>, charset = <span class="n">:default</span>, chars = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, show_percentage = <span class="n">false</span>, completion_message : String? = <span class="n">nil</span>)</a>
         
           <div class="summary"><p>initializes the progress bar with necessary information: <code>ticks = 10 # number of increments (bar size)</code> <code>charset = :default # can also be :line, :equals, :bar (what characters to use for bar)</code> <code>chars = [] # you can give two custom strings [empty_string, filled_string] to print instead of using a predefined charset</code> <code>completion_message: nil # string to display after loading is done</code> ProgressBar.new(chars: [" ", "x"])</p></div>
         
@@ -211,12 +211,12 @@ sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
 
   <h2>Class Method Detail</h2>
   
-    <div class="entry-detail" id="new&#40;ticks&#61;10,charset&#61;:default,chars&#61;&#91;&#93;ofString,completion_message:String?&#61;nil&#41;-class-method">
+    <div class="entry-detail" id="new&#40;ticks&#61;10,charset&#61;:default,chars&#61;&#91;&#93;ofString,show_percentage&#61;false,completion_message:String?&#61;nil&#41;-class-method">
       <div class="signature">
         
-        def self.<strong>new</strong>(ticks = <span class="n">10</span>, charset = <span class="n">:default</span>, chars = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, completion_message : String? = <span class="n">nil</span>)
+        def self.<strong>new</strong>(ticks = <span class="n">10</span>, charset = <span class="n">:default</span>, chars = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, show_percentage = <span class="n">false</span>, completion_message : String? = <span class="n">nil</span>)
 
-        <a class="method-permalink" href="#new%28ticks%3D10%2Ccharset%3D%3Adefault%2Cchars%3D%5B%5DofString%2Ccompletion_message%3AString%3F%3Dnil%29-class-method">#</a>
+        <a class="method-permalink" href="#new%28ticks%3D10%2Ccharset%3D%3Adefault%2Cchars%3D%5B%5DofString%2Cshow_percentage%3Dfalse%2Ccompletion_message%3AString%3F%3Dnil%29-class-method">#</a>
       </div>
       
         <div class="doc"><p>initializes the progress bar with necessary information:
@@ -229,7 +229,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -250,7 +250,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L51" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L51" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -266,7 +266,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L56" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L56" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -282,7 +282,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -300,7 +300,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L83" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -318,7 +318,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L98" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L102" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -336,7 +336,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L76" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L76" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -352,7 +352,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L60" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L60" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -368,7 +368,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -386,7 +386,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L91" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L95" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -405,7 +405,7 @@ resetting the progress bar after completion</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c0b699f090a0c9bdfc720ac432e9f3eb5aadc0ee/src/progress_bar.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
