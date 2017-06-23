@@ -64,4 +64,85 @@ describe ProgressBar do
       pb.tick
     end
   end
+
+  describe "#count" do
+    it "returns the current level" do
+      pb = ProgressBar.new
+      pb.tick
+      pb.tick
+      pb.count.should eq 2
+    end
+  end
+
+  describe "#tick" do
+    it "increments the count" do
+      pb = ProgressBar.new
+      pb.tick
+      pb.tick
+      pb.count.should eq 2
+    end
+
+    it "returns the new count" do
+      pb = ProgressBar.new
+      pb.tick
+      pb.tick.should eq 2
+    end
+  end
+
+  describe "#complete" do
+    it "sets count to max" do
+      pb = ProgressBar.new
+      pb.complete
+      pb.count.should eq 10
+    end
+  end
+
+  describe "#reset"  do
+    it "sets count to 0" do
+      pb = ProgressBar.new
+      pb.tick
+      pb.reset
+      pb.count.should eq 0
+    end
+  end
+
+  describe "#set" do
+    context "with valid value" do
+      it "sets the new value" do
+        pb = ProgressBar.new
+        pb.set 9
+        pb.count.should eq 9
+      end
+    end
+
+    context "with too large a value" do
+      it "throws a ProgressExceededException" do
+        pb = ProgressBar.new
+        pb.set(9)
+        pb.count.should eq 9
+        expect_raises(ProgressExceededException) do
+          pb.set(11)
+        end
+      end
+    end
+  end
+
+  describe "#set?" do
+    context "with valid value" do
+      it "sets the new value" do
+        pb = ProgressBar.new
+        pb.set?(9).should eq true
+        pb.count.should eq 9
+      end
+    end
+
+    context "with too large a value" do
+      it "doesn't set the value" do
+        pb = ProgressBar.new
+        pb.set?(9).should eq true
+        pb.set?(11).should eq false
+        pb.count.should eq 9
+      end
+    end
+  end
 end

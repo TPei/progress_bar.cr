@@ -44,8 +44,32 @@ class ProgressBar
 		value
 	end
 
+  def count
+    @count
+  end
+
   def complete
+    @count = @ticks
     puts "\n#{@completion_message}\n"
+  end
+
+  def complete?
+    @count == @ticks
+  end
+
+  def set(count)
+    @count = count
+		if @count > @ticks
+			raise ProgressExceededException.new
+    end
+  end
+
+  def set?(count)
+		if count > @ticks
+      return false
+    end
+    @count = count
+    return true
   end
 
   # resetting the progress bar (emptying it)
@@ -67,6 +91,7 @@ class ProgressBar
 	def tick
     @count += 1
     redraw
+    @count
   end
 
   # progresses the bar by a specified amount
@@ -83,7 +108,7 @@ class ProgressBar
     if @count <= @ticks
       print "[#{charset[1] * @count}#{charset[0] * (@ticks - @count)}]\r"
     end
-    if @count == @ticks && @completion_message
+    if complete? && @completion_message
       complete unless @complete_printed
       @complete_printed = true
     end
