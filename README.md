@@ -1,4 +1,4 @@
-# ProgressBar.cr
+# ProgressBar.cr [![Build Status](https://travis-ci.org/TPei/progress_bar.cr.svg?branch=master)](https://travis-ci.org/TPei/progress_bar.cr)
 
 ## Installation
 
