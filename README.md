@@ -63,8 +63,11 @@ end
 pb.init # prints empty bar
 pb.tick: # increases bar filling by one and reprints
 pb.progress(by: 10) # increases bar by desired number
+pb.set(5) # set bar to given number
+pb.set?(5) # try setting bar => true / false
+pb.count # get current count
 pb.reset # resets the progress bar to 0, without redrawing, making it
-pb.complete # prints finish message
+pb.complete # prints finish message, sets bar to max
 reusable
 ```
 

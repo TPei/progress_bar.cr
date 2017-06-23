@@ -97,8 +97,11 @@ pb.with_progress <span class="k">do</span>
 <pre><code class='language-crystal'>pb.init <span class="c"># prints empty bar</span>
 pb.tick: <span class="c"># increases bar filling by one and reprints</span>
 pb.progress(by: <span class="n">10</span>) <span class="c"># increases bar by desired number</span>
+pb.set(<span class="n">5</span>) <span class="c"># set bar to given number</span>
+pb.set?(<span class="n">5</span>) <span class="c"># try setting bar &#61;&gt; true / false</span>
+pb.count <span class="c"># get current count</span>
 pb.reset <span class="c"># resets the progress bar to 0, without redrawing, making it</span>
-pb.complete <span class="c"># prints finish message</span>
+pb.complete <span class="c"># prints finish message, sets bar to max</span>
 reusable</code></pre>
 
 <h2>initialize options</h2>

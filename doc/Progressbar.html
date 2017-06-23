@@ -86,7 +86,7 @@ sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
   <h2>Defined in:</h2>
   
     
-      <a href="https://github.com/TPei/progress_bar.cr/blob/466a0281b16414304ac2fa15144024a84a5155e2/src/progress_bar.cr#L18" target="_blank">progress_bar.cr</a>
+      <a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L18" target="_blank">progress_bar.cr</a>
     
     <br/>
   
@@ -130,6 +130,16 @@ sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
       </li>
     
       <li class="entry-summary">
+        <a href="#complete%3F-instance-method" class="signature"><strong>#complete?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#count%3AInt32-instance-method" class="signature"><strong>#count</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
         <a href="#init-instance-method" class="signature"><strong>#init</strong></a>
         
           <div class="summary"><p>initiate progressbar => print empty bar of specified length</p></div>
@@ -147,6 +157,16 @@ sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
         <a href="#reset-instance-method" class="signature"><strong>#reset</strong></a>
         
           <div class="summary"><p>resetting the progress bar (emptying it)</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set%28count%29-instance-method" class="signature"><strong>#set</strong>(count)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set%3F%28count%29-instance-method" class="signature"><strong>#set?</strong>(count)</a>
         
       </li>
     
@@ -209,7 +229,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/466a0281b16414304ac2fa15144024a84a5155e2/src/progress_bar.cr#L32" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L32" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -230,7 +250,39 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/466a0281b16414304ac2fa15144024a84a5155e2/src/progress_bar.cr#L47" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L51" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="complete?-instance-method">
+      <div class="signature">
+        
+        def <strong>complete?</strong>
+
+        <a class="method-permalink" href="#complete%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="count:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>count</strong> : Int32
+
+        <a class="method-permalink" href="#count%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L47" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -248,7 +300,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/466a0281b16414304ac2fa15144024a84a5155e2/src/progress_bar.cr#L59" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L83" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -266,7 +318,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/466a0281b16414304ac2fa15144024a84a5155e2/src/progress_bar.cr#L73" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L98" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -284,7 +336,39 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/466a0281b16414304ac2fa15144024a84a5155e2/src/progress_bar.cr#L52" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L76" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set&#40;count&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>set</strong>(count)
+
+        <a class="method-permalink" href="#set%28count%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set?&#40;count&#41;-instance-method">
+      <div class="signature">
+        
+        def <strong>set?</strong>(count)
+
+        <a class="method-permalink" href="#set%3F%28count%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L67" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -302,7 +386,7 @@ ProgressBar.new(chars: [" ", "x"])</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/466a0281b16414304ac2fa15144024a84a5155e2/src/progress_bar.cr#L67" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L91" target="_blank">View source</a>]
         
       </div>
     </div>
@@ -321,7 +405,7 @@ resetting the progress bar after completion</p></div>
       <br/>
       <div>
         
-          [<a href="https://github.com/TPei/progress_bar.cr/blob/466a0281b16414304ac2fa15144024a84a5155e2/src/progress_bar.cr#L40" target="_blank">View source</a>]
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/c2552db9702c6254f12b371e690dbb6c4c1f6078/src/progress_bar.cr#L40" target="_blank">View source</a>]
         
       </div>
     </div>
