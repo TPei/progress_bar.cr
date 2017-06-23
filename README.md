@@ -1,5 +1,7 @@
 # ProgressBar.cr [![Build Status](https://travis-ci.org/TPei/progress_bar.cr.svg?branch=master)](https://travis-ci.org/TPei/progress_bar.cr)
 
+![progress animation](https://github.com/tpei/progress_bar.cr/raw/master/demo.gif)
+
 ## Installation
 
 Add to your shard.yml
@@ -20,7 +22,7 @@ $ crystal deps
 ## Usage
 
 ```crystal
-require "progress_bar"
+require "require "progress_bar.cr/progress_bar""
 
 # simple
 pb = ProgressBar.new
@@ -34,7 +36,7 @@ end
 # => [##########]
 ```
 
-## block usage
+### Block Usage
 
 You can use the `with_progress` block to automatically reset and clean
 up the progress bar after your block is done.
@@ -56,12 +58,13 @@ end
 # => DONE?
 ```
 
-## methods
-```
+###  Available Methods
+```crystal
 pb.init # prints empty bar
 pb.tick: # increases bar filling by one and reprints
 pb.progress(by: 10) # increases bar by desired number
 pb.reset # resets the progress bar to 0, without redrawing, making it
+pb.complete # prints finish message
 reusable
 ```
 

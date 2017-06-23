@@ -40,7 +40,9 @@
 </div>
 
 <div id="main-content">
-<h1>ProgressBar.cr</h1>
+<h1>ProgressBar.cr <a href="https://travis-ci.org/TPei/progress_bar.cr" target="_blank"><img src="https://travis-ci.org/TPei/progress_bar.cr.svg?branch=master" alt="Build Status"/></a></h1>
+
+<p><img src="https://github.com/tpei/progress_bar.cr/raw/master/demo.gif" alt="progress animation"/></p>
 
 <h2>Installation</h2>
 
@@ -57,20 +59,20 @@
 
 <h2>Usage</h2>
 
-<pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;progress_bar&quot;</span>
+<pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;require &quot;</span>progress_bar.cr<span class="s">/progress_bar&quot;&quot;
 
-<span class="c"># simple</span>
-pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>
-<span class="c"># print empty progress bar</span>
+# simple
+pb &#61; ProgressBar.new
+# print empty progress bar
 pb.init
 
-<span class="n">10</span>.times <span class="k">do</span>
-  sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
-  pb.tick <span class="c"># increase bar progress by 1</span>
-<span class="k">end</span>
-<span class="c"># &#61;&gt; &#91;##########&#93;</span></code></pre>
+10.times do
+  sleep 0.1 # very time intense&#33;
+  pb.tick # increase bar progress by 1
+end
+# &#61;&gt; &#91;##########&#93;</code></pre>
 
-<h2>block usage</h2>
+<h3>Block Usage</h3>
 
 <p>You can use the <code>with_progress</code> block to automatically reset and clean
 up the progress bar after your block is done.
@@ -90,12 +92,13 @@ pb.with_progress <span class="k">do</span>
 <span class="c"># &#61;&gt; &#91;########  &#93;</span>
 <span class="c"># &#61;&gt; DONE?</span></code></pre>
 
-<h2>methods</h2>
+<h3>Available Methods</h3>
 
-<pre><code>pb.init <span class="c"># prints empty bar</span>
+<pre><code class='language-crystal'>pb.init <span class="c"># prints empty bar</span>
 pb.tick: <span class="c"># increases bar filling by one and reprints</span>
 pb.progress(by: <span class="n">10</span>) <span class="c"># increases bar by desired number</span>
 pb.reset <span class="c"># resets the progress bar to 0, without redrawing, making it</span>
+pb.complete <span class="c"># prints finish message</span>
 reusable</code></pre>
 
 <h2>initialize options</h2>

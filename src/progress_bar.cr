@@ -2,7 +2,7 @@
 # by displaying a progress bar
 #
 # ```crystal
-# require "progress_bar"
+# require "progress_bar.cr/progress_bar"
 #
 # # simple
 # pb = ProgressBar.new
@@ -44,7 +44,7 @@ class ProgressBar
 		value
 	end
 
-  def complete 
+  def complete
     puts "\n#{@completion_message}\n"
   end
 
