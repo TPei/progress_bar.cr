@@ -29,20 +29,20 @@ class ProgressBar
   # `chars = [] # you can give two custom strings [empty_string, filled_string] to print instead of using a predefined charset`
   # `completion_message: nil # string to display after loading is done`
   # ProgressBar.new(chars: [" ", "x"])
-	def initialize(@ticks = 10, @charset = :default, @chars = [] of String, @show_percentage = false, @completion_message : (Nil | String) = nil)
-		@count = 0
+  def initialize(@ticks = 10, @charset = :default, @chars = [] of String, @show_percentage = false, @completion_message : (Nil | String) = nil)
+    @count = 0
     @initiated = false
     @complete_printed = false
-	end
+  end
 
   # yields and returns block return value
   # resetting the progress bar after completion
-	def with_progress
-		value = yield
+  def with_progress
+    value = yield
     complete unless @complete_printed
     reset
-		value
-	end
+    value
+  end
 
   def count
     @count
@@ -59,13 +59,13 @@ class ProgressBar
 
   def set(count)
     @count = count
-		if @count > @ticks
-			raise ProgressExceededException.new
+    if @count > @ticks
+      raise ProgressExceededException.new
     end
   end
 
   def set?(count)
-		if count > @ticks
+    if count > @ticks
       return false
     end
     @count = count
@@ -92,7 +92,7 @@ class ProgressBar
   end
 
   # increment progress by one
-	def tick
+  def tick
     @count += 1
     redraw
     @count
@@ -105,8 +105,8 @@ class ProgressBar
   end
 
   private def redraw
-		if @count > @ticks
-			raise ProgressExceededException.new
+    if @count > @ticks
+      raise ProgressExceededException.new
     end
 
     if @count <= @ticks
@@ -120,7 +120,7 @@ class ProgressBar
       complete unless @complete_printed
       @complete_printed = true
     end
-	end
+  end
 
   private def charset
     if @charset == :default && @chars.size >= 2
