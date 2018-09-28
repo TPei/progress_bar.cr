@@ -16,7 +16,7 @@ dependencies:
 and then install the library into your project with
 
 ```bash
-$ crystal deps
+$ shards
 ```
 
 ## Usage
@@ -28,11 +28,13 @@ require "require "progress_bar.cr/progress_bar""
 pb = ProgressBar.new
 # print empty progress bar
 pb.init
+pb.message("Setting up now...")
 
 10.times do
   sleep 0.1 # very time intense!
   pb.tick # increase bar progress by 1
 end
+# => Setting up now...
 # => [##########]
 ```
 
@@ -62,6 +64,7 @@ end
 ```crystal
 pb.init # prints empty bar
 pb.tick: # increases bar filling by one and reprints
+pb.message: # allows for printing progress messages
 pb.progress(by: 10) # increases bar by desired number
 pb.set(5) # set bar to given number
 pb.set?(5) # try setting bar => true / false
