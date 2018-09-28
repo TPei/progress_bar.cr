@@ -98,6 +98,16 @@ class ProgressBar
     @count
   end
 
+  def message(msg = "")
+    # overwrites old progress_bar output + brackets
+    print " " * (@ticks + 2)
+    print "\r"
+
+    # puts msg and redraws
+    puts msg
+    redraw
+  end
+
   # progresses the bar by a specified amount
   def progress(by add = 1)
     @count += add
