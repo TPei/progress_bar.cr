@@ -98,6 +98,7 @@ class ProgressBar
     @count
   end
 
+  # prints a message to the console without messing up the progress bar
   def message(msg = "")
     # overwrites old progress_bar output + brackets
     print " " * (@ticks + 2)
