@@ -1,6 +1,6 @@
 require "./src/progress_bar"
 
-pb = ProgressBar.new(ticks: 40, charset: :bar, completion_message: "Installation finished")
+pb = ProgressBar.new(ticks: 40, charset: :bar, completion_message: "Installation finished", show_percentage: true)
 
 pb.with_progress do
   pb.init
