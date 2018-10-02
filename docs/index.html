@@ -1,24 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.26.0">
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "";
+</script>
+
   <meta id="repository-name" content="github.com/TPei/progress_bar.cr">
-  <link href="css/style.css" rel="stylesheet" type="text/css" />
-  <script type="text/javascript" src="js/doc.js"></script>
   <title>README - github.com/TPei/progress_bar.cr</title>
 </head>
 <body>
 
-<div id="types-list">
-  <div id="search-box">
-    <input type="search" id="search-input" placeholder="Search...">
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="index.html">README</a>
+    </div>
   </div>
 
-  <ul>
-    <li class="current"><a href="index.html">README</a></li>
-  </ul>
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
 
-  <ul>
+  <div class="types-list">
+    <ul>
   
   <li class=" " data-id="github.com/TPei/progress_bar.cr/ProgressBar" data-name="progressbar">
       <a href="ProgressBar.html">ProgressBar</a>
@@ -37,9 +53,11 @@
   
 </ul>
 
+  </div>
 </div>
 
-<div id="main-content">
+
+<div class="main-content">
 <h1>ProgressBar.cr <a href="https://travis-ci.org/TPei/progress_bar.cr" target="_blank"><img src="https://travis-ci.org/TPei/progress_bar.cr.svg?branch=master" alt="Build Status"/></a></h1>
 
 <p><img src="https://github.com/tpei/progress_bar.cr/raw/master/demo.gif" alt="progress animation"/></p>
@@ -48,29 +66,31 @@
 
 <p>Add to your shard.yml</p>
 
-<pre><code class='language-yaml'>dependencies:
+<pre><code class="language-yaml">dependencies:
   progress_bar.cr:
     github: tpei/progress_bar.cr
     branch: master</code></pre>
 
 <p>and then install the library into your project with</p>
 
-<pre><code class='language-bash'>$ shards</code></pre>
+<pre><code class="language-bash">$ shards</code></pre>
 
 <h2>Usage</h2>
 
-<pre><code class='language-crystal'><span class="k">require</span> <span class="s">&quot;require &quot;</span>progress_bar.cr<span class="s">/progress_bar&quot;&quot;
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;require &quot;</span>progress_bar.cr<span class="s">/progress_bar&quot;&quot;
 
 # simple
-pb &#61; ProgressBar.new
+pb = ProgressBar.new
 # print empty progress bar
 pb.init
+pb.message(&quot;Setting up now...&quot;)
 
 10.times do
-  sleep 0.1 # very time intense&#33;
+  sleep 0.1 # very time intense!
   pb.tick # increase bar progress by 1
 end
-# &#61;&gt; &#91;##########&#93;</code></pre>
+# =&gt; Setting up now...
+# =&gt; [##########]</code></pre>
 
 <h3>Block Usage</h3>
 
@@ -79,26 +99,27 @@ up the progress bar after your block is done.
 Block usage will also print the completion_message, even if you don't
 completely fill the bar.</p>
 
-<pre><code class='language-crystal'>pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>(completion_message: <span class="s">&quot;DONE?&quot;</span>)
+<pre><code class="language-crystal">pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>(completion_message: <span class="s">&quot;DONE?&quot;</span>)
 
 pb.with_progress <span class="k">do</span>
   pb.init
 
   <span class="n">5</span>.times <span class="k">do</span>
-    sleep <span class="n">0.1</span> <span class="c"># very time intense&#33;</span>
+    sleep <span class="n">0.1</span> <span class="c"># very time intense!</span>
     pb.tick <span class="c"># increase bar progress by 1</span>
   <span class="k">end</span>
 <span class="k">end</span>
-<span class="c"># &#61;&gt; &#91;########  &#93;</span>
-<span class="c"># &#61;&gt; DONE?</span></code></pre>
+<span class="c"># =&gt; [########  ]</span>
+<span class="c"># =&gt; DONE?</span></code></pre>
 
 <h3>Available Methods</h3>
 
-<pre><code class='language-crystal'>pb.init <span class="c"># prints empty bar</span>
+<pre><code class="language-crystal">pb.init <span class="c"># prints empty bar</span>
 pb.tick: <span class="c"># increases bar filling by one and reprints</span>
+pb.message: <span class="c"># allows for printing progress messages</span>
 pb.progress(by: <span class="n">10</span>) <span class="c"># increases bar by desired number</span>
 pb.set(<span class="n">5</span>) <span class="c"># set bar to given number</span>
-pb.set?(<span class="n">5</span>) <span class="c"># try setting bar &#61;&gt; true / false</span>
+pb.set?(<span class="n">5</span>) <span class="c"># try setting bar =&gt; true / false</span>
 pb.count <span class="c"># get current count</span>
 pb.reset <span class="c"># resets the progress bar to 0, without redrawing, making it</span>
 pb.complete <span class="c"># prints finish message, sets bar to max</span>
@@ -129,9 +150,9 @@ signifying emptiness, one a filled state.</p>
 
 <p>Don't exceed the tick number, will throw an exception!</p>
 
-<pre><code class='language-crystal'><span class="c"># count already &#61;&#61; ticks</span>
+<pre><code class="language-crystal"><span class="c"># count already == ticks</span>
 <span class="k">begin</span>
-  pb.tick <span class="c"># &#61;&gt; &#40;ProgressExceededException&#41;</span>
+  pb.tick <span class="c"># =&gt; (ProgressExceededException)</span>
 <span class="k">rescue</span>
   puts <span class="s">&quot;Sorry, installation taking longer than expected&quot;</span>
 <span class="k">end</span>

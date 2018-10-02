@@ -98,6 +98,24 @@ class ProgressBar
     @count
   end
 
+  # prints a message to the console without messing up the progress bar
+  def message(msg = "")
+    # overwrites old progress_bar output + brackets
+    print " " * output_size
+    print "\r"
+
+    # puts msg and redraws
+    puts msg
+    redraw
+  end
+
+  def output_size
+    size = @ticks
+    size += 2 # for [ ]
+    size += 8 if @show_percentage # for 100.00%
+    size
+  end
+
   # progresses the bar by a specified amount
   def progress(by add = 1)
     @count += add
@@ -111,7 +129,7 @@ class ProgressBar
 
     if @count <= @ticks
       if @show_percentage
-        print "[#{charset[1] * @count}#{charset[0] * (@ticks - @count)}] #{percentage}\r"
+        print "[#{charset[1] * @count}#{charset[0] * (@ticks - @count)}] #{percentage}%\r"
       else
         print "[#{charset[1] * @count}#{charset[0] * (@ticks - @count)}]\r"
       end

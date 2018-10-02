@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Crystal Docs 0.26.0">
+
+
+<link href="css/style.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="js/doc.js"></script>
+<script type="text/javascript">
+  CrystalDoc.base_path = "";
+</script>
+
+  <meta id="repository-name" content="github.com/TPei/progress_bar.cr">
+  <title>ProgressBar - github.com/TPei/progress_bar.cr</title>
+</head>
+<body>
+
+<div class="sidebar">
+  <div class="sidebar-header">
+    <div class="search-box">
+      <input type="search" class="search-input" placeholder="Search..." spellcheck="false">
+    </div>
+
+    <div class="repository-links">
+      <a href="index.html">README</a>
+    </div>
+  </div>
+
+  <div class="search-results" class="hidden">
+    <ul class="search-list"></ul>
+  </div>
+
+  <div class="types-list">
+    <ul>
+  
+  <li class=" current" data-id="github.com/TPei/progress_bar.cr/ProgressBar" data-name="progressbar">
+      <a href="ProgressBar.html">ProgressBar</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/TPei/progress_bar.cr/ProgressCharsetException" data-name="progresscharsetexception">
+      <a href="ProgressCharsetException.html">ProgressCharsetException</a>
+      
+    </li>
+  
+  <li class=" " data-id="github.com/TPei/progress_bar.cr/ProgressExceededException" data-name="progressexceededexception">
+      <a href="ProgressExceededException.html">ProgressExceededException</a>
+      
+    </li>
+  
+</ul>
+
+  </div>
+</div>
+
+
+<div class="main-content">
+<h1 class="type-name">
+
+  <span class="kind">class</span> ProgressBar
+
+</h1>
+
+
+  <ul class="superclass-hierarchy"><li class="superclass"><a href="ProgressBar.html">ProgressBar</a></li><li class="superclass">Reference</li><li class="superclass">Object</li></ul>
+
+
+
+
+  <h2>Overview</h2>
+
+  <p>Have a long running command? Keep your users updated on the progress
+by displaying a progress bar</p>
+
+<pre><code class="language-crystal"><span class="k">require</span> <span class="s">&quot;progress_bar.cr/progress_bar&quot;</span>
+
+<span class="c"># simple</span>
+pb <span class="o">=</span> <span class="t">ProgressBar</span>.<span class="k">new</span>
+<span class="c"># print empty progress bar</span>
+pb.init
+
+<span class="n">10</span>.times <span class="k">do</span>
+  sleep <span class="n">0.1</span> <span class="c"># very time intense!</span>
+  pb.tick <span class="c"># increase bar progress by 1</span>
+<span class="k">end</span>
+<span class="c"># =&gt; [##########]</span></code></pre>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2>Defined in:</h2>
+  
+    
+      <a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L18" target="_blank">
+        progress_bar.cr
+      </a>
+    
+    <br/>
+  
+
+
+
+  
+    <h2>Constant Summary</h2>
+  
+  <dl>
+    
+      <dt class="entry-const" id="CHARSETS">
+        <strong>CHARSETS</strong> = <code>{default: [<span class="s">&quot; &quot;</span>, <span class="s">&quot;#&quot;</span>], line: [<span class="s">&quot; &quot;</span>, <span class="s">&quot;-&quot;</span>], equals: [<span class="s">&quot; &quot;</span>, <span class="s">&quot;=&quot;</span>], bar: [<span class="s">&quot;▒&quot;</span>, <span class="s">&quot;█&quot;</span>]}</code>
+      </dt>
+      
+    
+  </dl>
+
+
+
+  <h2>Constructors</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#new%28ticks%3D10%2Ccharset%3D%3Adefault%2Cchars%3D%5B%5DofString%2Cshow_percentage%3Dfalse%2Ccompletion_message%3AString%3F%3Dnil%29-class-method" class="signature"><strong>.new</strong>(ticks = <span class="n">10</span>, charset = <span class="n">:default</span>, chars = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, show_percentage = <span class="n">false</span>, completion_message : String? = <span class="n">nil</span>)</a>
+        
+          <div class="summary"><p>initializes the progress bar with necessary information: <code>ticks = 10 # number of increments (bar size)</code> <code>charset = :default # can also be :line, :equals, :bar (what characters to use for bar)</code> <code>chars = [] # you can give two custom strings [empty_string, filled_string] to print instead of using a predefined charset</code> <code>completion_message: nil # string to display after loading is done</code> ProgressBar.new(chars: [" ", "x"])</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+  <h2>Instance Method Summary</h2>
+  <ul class="list-summary">
+    
+      <li class="entry-summary">
+        <a href="#complete-instance-method" class="signature"><strong>#complete</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#complete%3F-instance-method" class="signature"><strong>#complete?</strong></a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#count%3AInt32-instance-method" class="signature"><strong>#count</strong> : Int32</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#init-instance-method" class="signature"><strong>#init</strong></a>
+        
+          <div class="summary"><p>initiate progressbar => print empty bar of specified length</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#message%28msg%3D%26quot%3B%26quot%3B%29-instance-method" class="signature"><strong>#message</strong>(msg = <span class="s">&quot;&quot;</span>)</a>
+        
+          <div class="summary"><p>prints a message to the console without messing up the progress bar</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#progress%28byadd%3D1%29-instance-method" class="signature"><strong>#progress</strong>(by add = <span class="n">1</span>)</a>
+        
+          <div class="summary"><p>progresses the bar by a specified amount</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#reset-instance-method" class="signature"><strong>#reset</strong></a>
+        
+          <div class="summary"><p>resetting the progress bar (emptying it)</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set%28count%29-instance-method" class="signature"><strong>#set</strong>(count)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#set%3F%28count%29-instance-method" class="signature"><strong>#set?</strong>(count)</a>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#tick-instance-method" class="signature"><strong>#tick</strong></a>
+        
+          <div class="summary"><p>increment progress by one</p></div>
+        
+      </li>
+    
+      <li class="entry-summary">
+        <a href="#with_progress%28%26block%29-instance-method" class="signature"><strong>#with_progress</strong>(&block)</a>
+        
+          <div class="summary"><p>yields and returns block return value resetting the progress bar after completion</p></div>
+        
+      </li>
+    
+  </ul>
+
+
+
+
+
+<div class="methods-inherited">
+  
+    
+
+
+    
+
+
+    
+
+
+  
+    
+
+
+    
+
+
+    
+
+
+  
+</div>
+
+
+  <h2>Constructor Detail</h2>
+  
+    <div class="entry-detail" id="new(ticks=10,charset=:default,chars=[]ofString,show_percentage=false,completion_message:String?=nil)-class-method">
+      <div class="signature">
+        
+        def self.<strong>new</strong>(ticks = <span class="n">10</span>, charset = <span class="n">:default</span>, chars = <span class="o">[]</span> <span class="k">of</span> <span class="t">String</span>, show_percentage = <span class="n">false</span>, completion_message : String? = <span class="n">nil</span>)
+
+        <a class="method-permalink" href="#new%28ticks%3D10%2Ccharset%3D%3Adefault%2Cchars%3D%5B%5DofString%2Cshow_percentage%3Dfalse%2Ccompletion_message%3AString%3F%3Dnil%29-class-method">#</a>
+      </div>
+      
+        <div class="doc"><p>initializes the progress bar with necessary information:
+<code>ticks = 10 # number of increments (bar size)</code>
+<code>charset = :default # can also be :line, :equals, :bar (what characters to use for bar)</code>
+<code>chars = [] # you can give two custom strings [empty_string, filled_string] to print instead of using a predefined charset</code>
+<code>completion_message: nil # string to display after loading is done</code>
+ProgressBar.new(chars: [" ", "x"])</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L32" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+
+  <h2>Instance Method Detail</h2>
+  
+    <div class="entry-detail" id="complete-instance-method">
+      <div class="signature">
+        
+        def <strong>complete</strong>
+
+        <a class="method-permalink" href="#complete-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L51" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="complete?-instance-method">
+      <div class="signature">
+        
+        def <strong>complete?</strong>
+
+        <a class="method-permalink" href="#complete%3F-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L56" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="count:Int32-instance-method">
+      <div class="signature">
+        
+        def <strong>count</strong> : Int32
+
+        <a class="method-permalink" href="#count%3AInt32-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L47" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="init-instance-method">
+      <div class="signature">
+        
+        def <strong>init</strong>
+
+        <a class="method-permalink" href="#init-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>initiate progressbar => print empty bar of specified length</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L83" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="message(msg=&amp;quot;&amp;quot;)-instance-method">
+      <div class="signature">
+        
+        def <strong>message</strong>(msg = <span class="s">&quot;&quot;</span>)
+
+        <a class="method-permalink" href="#message%28msg%3D%26quot%3B%26quot%3B%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>prints a message to the console without messing up the progress bar</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L102" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="progress(byadd=1)-instance-method">
+      <div class="signature">
+        
+        def <strong>progress</strong>(by add = <span class="n">1</span>)
+
+        <a class="method-permalink" href="#progress%28byadd%3D1%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>progresses the bar by a specified amount</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L113" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="reset-instance-method">
+      <div class="signature">
+        
+        def <strong>reset</strong>
+
+        <a class="method-permalink" href="#reset-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>resetting the progress bar (emptying it)</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L76" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set(count)-instance-method">
+      <div class="signature">
+        
+        def <strong>set</strong>(count)
+
+        <a class="method-permalink" href="#set%28count%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L60" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="set?(count)-instance-method">
+      <div class="signature">
+        
+        def <strong>set?</strong>(count)
+
+        <a class="method-permalink" href="#set%3F%28count%29-instance-method">#</a>
+      </div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L67" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="tick-instance-method">
+      <div class="signature">
+        
+        def <strong>tick</strong>
+
+        <a class="method-permalink" href="#tick-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>increment progress by one</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L95" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+    <div class="entry-detail" id="with_progress(&amp;block)-instance-method">
+      <div class="signature">
+        
+        def <strong>with_progress</strong>(&block)
+
+        <a class="method-permalink" href="#with_progress%28%26block%29-instance-method">#</a>
+      </div>
+      
+        <div class="doc"><p>yields and returns block return value
+resetting the progress bar after completion</p></div>
+      
+      <br/>
+      <div>
+        
+          [<a href="https://github.com/TPei/progress_bar.cr/blob/5cef1b8dfa1f098a4e3ad4c5fcf0257666c71eb2/src/progress_bar.cr#L40" target="_blank">View source</a>]
+        
+      </div>
+    </div>
+  
+
+
+
+
+</div>
+
+</body>
+</html>
