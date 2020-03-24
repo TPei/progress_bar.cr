@@ -16,7 +16,7 @@ dependencies:
 and then install the library into your project with
 
 ```bash
-$ shards
+$ shards install
 ```
 
 ## Usage
