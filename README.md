@@ -24,7 +24,7 @@ $ shards install
 ## Usage
 
 ```crystal
-require "require "progress_bar.cr/progress_bar""
+require "progress_bar.cr/progress_bar"
 
 # simple
 pb = ProgressBar.new
