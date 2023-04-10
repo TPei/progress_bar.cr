@@ -1,4 +1,4 @@
-# ProgressBar.cr [![Build Status](https://travis-ci.org/TPei/progress_bar.cr.svg?branch=master)](https://travis-ci.org/TPei/progress_bar.cr)
+# ProgressBar.cr
 
 ###### This project is being built weekly with the latest crystal version (works with v1.7.2 🎉)
 
